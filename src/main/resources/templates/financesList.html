@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Financial Controller</title>
+  <script src="https://kit.fontawesome.com/0faddc1af8.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Financial Controller: Vicente</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Prototype of F/Controller</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="financial_register">New Finance Register</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Click Here
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="available_finances">Available Finances</a></li>
+              <li><a class="dropdown-item" href="my_finances">Registers Finances</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+          <div class="container my-5 col-md-6">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Transfer</th>
+                <th scope="col">Average Spending</th>
+              </tr>
+              </thead>
+              <tbody class="table-group-divider">
+              <tr th:each="b : ${financial}">
+                <td th:text="${b.id}"></td>
+                <td th:text="${b.name}"></td>
+                <td th:text="${b.date}"></td>
+                <td th:text="${b.transferencia}"></td>
+                <td th:text="${b.mediaGasto}"></td>
+                <td><a class="btn btn-secondary btn-sm" th:href="@{/myfinances/{id}(id=${b.id})}">Add to Register</a>
+                  <a style="color:blue" th:href="@{/editFinance/{id} (id=${b.id})}"><i class="fa-regular fa-pen-to-square"></i></a>
+                  <a style="color:orange" th:href="@{/deleteFinance/{id} (id=${b.id})}"><i class="fa-solid fa-user-slash"></i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
